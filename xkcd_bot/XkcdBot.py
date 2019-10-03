@@ -228,6 +228,9 @@ class XkcdBot(Bot):
 
         latest_id = self.__get_latest_comic_id(db_session, True)
         comic = self.__get_comic(latest_id, db_session)
+        if comic is None:
+            self.logger.error("Latest comic did not load")
+            return
 
         for subscription in db_session.query(Subscription).all():
             if subscription.last_comic_id < latest_id:
