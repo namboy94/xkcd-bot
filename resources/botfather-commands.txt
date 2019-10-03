@@ -1,0 +1,5 @@
+help - Sends a help message
+subscribe - Subscribes for new XKCD comics
+unsubscribe - Unsubscribes
+new - Sends the latest XKCD comic
+show - Sends a specific XKCD comic
