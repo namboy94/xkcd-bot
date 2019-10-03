@@ -1,0 +1,1 @@
+help - Sends a help message
