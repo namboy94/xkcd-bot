@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+  app:
+    build: .
+    image: "xkcd-bot"
+    container_name: "xkcd-bot-app"
+    volumes:
+      - data:/root/.config/xkcd-bot
+    restart: always
+volumes:
+  data: ~

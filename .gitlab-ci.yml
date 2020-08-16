@@ -69,18 +69,19 @@ pypi_upload:
   script:
     - pypi-upload
 
-run_bot:
+deploy_bot:
   stage: deploy
-  tags: [privileged]
+  tags: [privileged, xkcd-bot]
   only: [master, develop]
   before_script: []
   script:
-    - docker build -t xkcd-bot . --no-cache
-    - docker stop xkcd-bot-instance || true
-    - docker rm xkcd-bot-instance || true
+    - docker-compose build
+    - docker-compose up --no-start
+    - bin/backup.sh backup.tar.gz
     - echo $TELEGRAM_API_KEY | docker run --rm -i -v
-      /home/hermann/.config/xkcd-bot:/root/.config/xkcd-bot
-      xkcd-bot --initialize
-    - docker run -d --restart always --name xkcd-bot-instance -v
-      /home/hermann/.config/xkcd-bot:/root/.config/xkcd-bot
-      xkcd-bot -v
+      xkcd-bot_data:/root/.config/xkcd-bot xkcd-bot --initialize
+    - docker-compose up -d
+  artifacts:
+    paths:
+      - backup.tar.gz
+    expire_in: 1 month
