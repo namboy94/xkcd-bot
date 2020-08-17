@@ -32,7 +32,7 @@ tar xvf "$TARGET"
 docker-compose down
 docker-compose up --no-start
 
-docker run -it --rm -v "$DATA_VOLUME":/data -v "$(pwd)"/backup:/target \
+docker run -i --rm -v "$DATA_VOLUME":/data -v "$(pwd)"/backup:/target \
     ubuntu bash -c 'rm -rf /data/* && tar -C / -xvf /target/data.tar.gz'
 
 docker-compose up -d
