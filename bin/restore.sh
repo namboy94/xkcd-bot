@@ -20,6 +20,7 @@ set -e
 
 if [ "$#" -ne 1 ]; then
     echo "Usage: restore.sh <backup-file>"
+    exit 1
 fi
 
 DATA_VOLUME="xkcd-bot_data"
