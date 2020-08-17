@@ -15,7 +15,7 @@ RUN apt update && \
     ln -s /usr/bin/pip3 /usr/bin/pip && \
     cd xkcd-bot && \
     python setup.py install && \
-    mkdir ~/.config/xkcd-bot -p
+    mkdir ~/.config -p
 
 ENTRYPOINT ["/usr/local/bin/xkcd-bot"]
 

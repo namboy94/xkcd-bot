@@ -1,3 +1,6 @@
+V 0.2.0:
+  - Uses docker-compose
+  - Added backup and restore scripts
 V 0.1.0:
   - Initial Release
 V 0.0.1:
